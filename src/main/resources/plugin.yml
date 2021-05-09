@@ -1,0 +1,5 @@
+name: NBTFixer
+version: ${project.version}
+main: com.yiorno.nbtfixer.NBTFixer
+api-version: 1.16
+authors: [ yossy_zip ]
