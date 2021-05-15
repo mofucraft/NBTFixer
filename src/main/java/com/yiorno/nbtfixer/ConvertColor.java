@@ -24,13 +24,14 @@ public class ConvertColor {
             List<String> newLoreList = new ArrayList<String>();
             String newLore;
 
-            int i = loreList.size();
+            int loreSize = loreList.size();
+            int i = 0;
 
             if(loreChange == true) {
-                while (i > 0) {
-                    newLore = ChatColor.translateAlternateColorCodes('&', loreList.get(i - 1));
+                while (i < loreSize) {
+                    newLore = ChatColor.translateAlternateColorCodes('&', loreList.get(i));
                     newLoreList.add(newLore);
-                    i--;
+                    i++;
                 }
 
                 meta.setLore(newLoreList);

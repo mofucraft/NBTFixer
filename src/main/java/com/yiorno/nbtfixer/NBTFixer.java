@@ -2,6 +2,7 @@ package com.yiorno.nbtfixer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,8 +41,13 @@ public final class NBTFixer extends JavaPlugin implements Listener {
     @EventHandler
     public void onHold(PlayerItemHeldEvent e){
         ItemStack stack = e.getPlayer().getInventory().getItem(e.getNewSlot());
-        ConvertColor convertColor = new ConvertColor();
-        convertColor.convert(stack);
+
+        if(stack != null) {
+
+            ConvertColor convertColor = new ConvertColor();
+            convertColor.convert(stack);
+
+        }
     }
 
     @EventHandler
