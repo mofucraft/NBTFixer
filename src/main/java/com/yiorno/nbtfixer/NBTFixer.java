@@ -1,9 +1,7 @@
 package com.yiorno.nbtfixer;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.entity.Item;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,11 +10,8 @@ import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.units.qual.C;
 
 public final class NBTFixer extends JavaPlugin implements Listener {
 
@@ -34,8 +29,10 @@ public final class NBTFixer extends JavaPlugin implements Listener {
     @EventHandler
     public void onSpawn(ItemSpawnEvent e){
         ItemStack stack = e.getEntity().getItemStack();
-        ConvertColor convertColor = new ConvertColor();
-        convertColor.convert(stack);
+        //ConvertColor convertColor = new ConvertColor();
+        //convertColor.convert(stack);
+        EditNBT editNBT = new EditNBT();
+        editNBT.removeMythicType(stack);
     }
 
     @EventHandler
@@ -44,8 +41,10 @@ public final class NBTFixer extends JavaPlugin implements Listener {
 
         if(stack != null) {
 
-            ConvertColor convertColor = new ConvertColor();
-            convertColor.convert(stack);
+            //ConvertColor convertColor = new ConvertColor();
+            //convertColor.convert(stack);
+            EditNBT editNBT = new EditNBT();
+            editNBT.removeMythicType(stack);
 
         }
     }
@@ -53,25 +52,45 @@ public final class NBTFixer extends JavaPlugin implements Listener {
     @EventHandler
     public void onDrop(PlayerDropItemEvent e){
         ItemStack stack = e.getItemDrop().getItemStack();
-        ConvertColor convertColor = new ConvertColor();
-        convertColor.convert(stack);
+        //ConvertColor convertColor = new ConvertColor();
+        //convertColor.convert(stack);
+        EditNBT editNBT = new EditNBT();
+        editNBT.removeMythicType(stack);
     }
 
     @EventHandler
     public void onPickup(EntityPickupItemEvent e){
         ItemStack stack = e.getItem().getItemStack();
-        ConvertColor convertColor = new ConvertColor();
-        convertColor.convert(stack);
+        //ConvertColor convertColor = new ConvertColor();
+        //convertColor.convert(stack);
+        EditNBT editNBT = new EditNBT();
+        editNBT.removeMythicType(stack);
     }
 
-    //@EventHandler
-    //public void onClick(InventoryClickEvent e){
-    //    if (e.getCurrentItem() == null){
-    //        return;
-    //    }
+    @EventHandler
+    public void onClick(InventoryClickEvent e){
+        if (e.getCurrentItem() != null && e.getCurrentItem().getItemMeta() != null) {
 
-    //    ItemStack stack = e.getCurrentItem();
-    //    ConvertColor convertColor = new ConvertColor();
-    //    convertColor.convert(stack);
-    //}
+            ItemStack stack = e.getCurrentItem();
+            //ConvertColor convertColor = new ConvertColor();
+            //convertColor.convert(stack);
+            EditNBT editNBT = new EditNBT();
+            editNBT.removeMythicType(stack);
+
+        }
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+        if(cmd.getName().equalsIgnoreCase("mythicnbttest")){
+
+            Player player = (Player)sender;
+            EditNBT editNBT = new EditNBT();
+            editNBT.removeMythicTypeTest(player);
+
+
+        }
+
+        return false;
+    }
 }

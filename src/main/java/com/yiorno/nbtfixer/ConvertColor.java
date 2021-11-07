@@ -1,7 +1,6 @@
 package com.yiorno.nbtfixer;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -16,9 +15,9 @@ public class ConvertColor {
 
         //Get Name and Lores
         String name = meta.getDisplayName();
-        Boolean loreChange = true;
+        boolean loreChange = true;
 
-        if(stack.getItemMeta().hasLore() == true){
+        if(stack.getItemMeta().hasLore()){
             loreChange = true;
             List<String> loreList = meta.getLore();
             List<String> newLoreList = new ArrayList<String>();
@@ -27,7 +26,7 @@ public class ConvertColor {
             int loreSize = loreList.size();
             int i = 0;
 
-            if(loreChange == true) {
+            if(loreChange) {
                 while (i < loreSize) {
                     newLore = ChatColor.translateAlternateColorCodes('&', loreList.get(i));
                     newLoreList.add(newLore);
@@ -45,7 +44,6 @@ public class ConvertColor {
         meta.setDisplayName(newName);
         stack.setItemMeta(meta);
 
-        return;
     }
 
 }
