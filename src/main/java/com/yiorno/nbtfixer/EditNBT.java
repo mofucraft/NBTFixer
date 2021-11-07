@@ -27,26 +27,34 @@ public class EditNBT {
                     return;
                 }
 
-                if (nbtStr.contains("BlockEntityTag") || nbtStr.length() > 400) {
+                if (nbtStr.contains("BlockEntityTag") || nbtStr.length() > 800) {
                     ConvertColor cc = new ConvertColor();
                     cc.convert(stack);
                     return;
                 }
 
+
                 //Remove
                 int startPos = nbtStr.indexOf("MYTHIC_TYPE");
                 int endPos = nbtStr.indexOf(",", startPos);
+
+                if(startPos<2){
+                    ConvertColor cc = new ConvertColor();
+                    cc.convert(stack);
+                    return;
+                }
 
                 StringBuilder sb = new StringBuilder();
 
                 sb.append(nbtStr);
 
-                sb.delete(startPos - 1, endPos);
+                sb.delete(startPos, endPos+1);
 
                 String newNbtStr = sb.toString();
 
                 //Convert to NBT
-                net.minecraft.world.item.ItemStack nmsItem = new net.minecraft.world.item.ItemStack(Item.getById(1));
+                //net.minecraft.world.item.ItemStack nmsItem = new net.minecraft.world.item.ItemStack(Item.getById(1));
+                net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(stack);
                 NBTBase nbtbase = null;
 
                 try {
@@ -58,6 +66,7 @@ public class EditNBT {
                 nmsItem.setTag((NBTTagCompound) nbtbase);
                 ItemStack newStack = CraftItemStack.asBukkitCopy(nmsItem);
                 ItemMeta newMeta = newStack.getItemMeta();
+
 
                 //Write
                 stack.setItemMeta(newMeta);
@@ -71,13 +80,10 @@ public class EditNBT {
 
     public void removeMythicTypeTest(Player player){
         //Get NBT
-        ItemStack i = player.getInventory().getItemInMainHand();
-        net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(i);
+        ItemStack stack = player.getInventory().getItemInMainHand();
+        net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
         String nbtStr = CBStack.getTag().toString();
-
-        if(!(nbtStr.contains("MYTHIC_TYPE"))){
-            return;
-        }
+        player.sendMessage(nbtStr);
 
         //Remove
         int startPos = nbtStr.indexOf("MYTHIC_TYPE");
@@ -87,10 +93,32 @@ public class EditNBT {
 
         sb.append(nbtStr);
 
-        sb.delete(startPos-1, endPos);
+        sb.delete(startPos, endPos+1);
 
-        System.out.println(player + "のアイテムを置き換えました");
+        String newNbtStr = sb.toString();
+        player.sendMessage(newNbtStr);
 
+        //Convert to NBT
+        //net.minecraft.world.item.ItemStack nmsItem = new net.minecraft.world.item.ItemStack(Item.getById(1));
+        net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(stack);
+        NBTBase nbtbase = null;
+
+        try {
+            nbtbase = MojangsonParser.parse(newNbtStr);
+        } catch (CommandSyntaxException e) {
+            e.printStackTrace();
+        }
+
+        nmsItem.setTag((NBTTagCompound) nbtbase);
+        ItemStack newStack = CraftItemStack.asBukkitCopy(nmsItem);
+        //ItemMeta newMeta = newStack.getItemMeta();
+
+        //Write
+        //stack.setItemMeta(newMeta);
+
+        net.minecraft.world.item.ItemStack testCBStack = CraftItemStack.asNMSCopy(newStack);
+        String testnbtStr = testCBStack.getTag().toString();
+        player.sendMessage(testnbtStr);
 
     }
 
