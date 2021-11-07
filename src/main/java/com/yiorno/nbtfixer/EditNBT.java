@@ -27,6 +27,12 @@ public class EditNBT {
                     return;
                 }
 
+                if (nbtStr.contains("BlockEntityTag") || nbtStr.length() > 400) {
+                    ConvertColor cc = new ConvertColor();
+                    cc.convert(stack);
+                    return;
+                }
+
                 //Remove
                 int startPos = nbtStr.indexOf("MYTHIC_TYPE");
                 int endPos = nbtStr.indexOf(",", startPos);
