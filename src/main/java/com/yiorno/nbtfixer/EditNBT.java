@@ -38,12 +38,6 @@ public class EditNBT {
                 int startPos = nbtStr.indexOf("MYTHIC_TYPE");
                 int endPos = nbtStr.indexOf(",", startPos);
 
-                if(startPos<2){
-                    ConvertColor cc = new ConvertColor();
-                    cc.convert(stack);
-                    return;
-                }
-
                 StringBuilder sb = new StringBuilder();
 
                 sb.append(nbtStr);
