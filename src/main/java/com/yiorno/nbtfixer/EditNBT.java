@@ -15,18 +15,26 @@ public class EditNBT {
     public void removeMythicType(ItemStack stack){
         if(stack != null && stack.getItemMeta() !=null) {
 
+            //シュルカーは処理しない
+            String matStr = stack.getType().toString();
+            if(matStr.contains("SHULKER")){
+                return;
+            }
+
             //Get NBT
             net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
 
             if(CBStack.getTag() != null) {
                 String nbtStr = CBStack.getTag().toString();
 
+                //MYTHICMOBSじゃないアイテムは処理しない
                 if (!(nbtStr.contains("MYTHIC_TYPE"))) {
                     ConvertColor cc = new ConvertColor();
                     cc.convert(stack);
                     return;
                 }
 
+                //シュルカーは処理しない(多分)
                 if (nbtStr.contains("BlockEntityTag") || nbtStr.length() > 800) {
                     ConvertColor cc = new ConvertColor();
                     cc.convert(stack);
