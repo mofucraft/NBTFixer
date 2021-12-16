@@ -4,28 +4,27 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.nbt.MojangsonParser;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.item.Item;
-import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class EditNBT {
 
-    public void removeMythicType(ItemStack stack){
-        if(stack != null && stack.getItemMeta() !=null) {
+    public void removeMythicType(ItemStack stack) {
+        if (stack != null && stack.getItemMeta() != null) {
 
             //シュルカーは処理しない
             String matStr = stack.getType().toString();
-            if(matStr.contains("SHULKER")){
+            if (matStr.contains("SHULKER")) {
                 return;
             }
 
             //Get NBT
             net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
 
-            if(CBStack.getTag() != null) {
-                String nbtStr = CBStack.getTag().toString();
+            if (CBStack.s() != null) {
+                String nbtStr = CBStack.s().toString();
 
                 //MYTHICMOBSじゃないアイテムは処理しない
                 if (!(nbtStr.contains("MYTHIC_TYPE"))) {
@@ -50,7 +49,7 @@ public class EditNBT {
 
                 sb.append(nbtStr);
 
-                sb.delete(startPos, endPos+1);
+                sb.delete(startPos, endPos + 1);
 
                 String newNbtStr = sb.toString();
 
@@ -60,12 +59,12 @@ public class EditNBT {
                 NBTBase nbtbase = null;
 
                 try {
-                    nbtbase = MojangsonParser.parse(newNbtStr);
+                    nbtbase = MojangsonParser.a(newNbtStr);
                 } catch (CommandSyntaxException e) {
                     e.printStackTrace();
                 }
 
-                nmsItem.setTag((NBTTagCompound) nbtbase);
+                nmsItem.c((NBTTagCompound) nbtbase);
                 ItemStack newStack = CraftItemStack.asBukkitCopy(nmsItem);
                 ItemMeta newMeta = newStack.getItemMeta();
 
@@ -80,11 +79,11 @@ public class EditNBT {
     }
 
 
-    public void removeMythicTypeTest(Player player){
+    public void removeMythicTypeTest(Player player) {
         //Get NBT
         ItemStack stack = player.getInventory().getItemInMainHand();
         net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
-        String nbtStr = CBStack.getTag().toString();
+        String nbtStr = CBStack.s().toString();
         player.sendMessage(nbtStr);
 
         //Remove
@@ -95,7 +94,7 @@ public class EditNBT {
 
         sb.append(nbtStr);
 
-        sb.delete(startPos, endPos+1);
+        sb.delete(startPos, endPos + 1);
 
         String newNbtStr = sb.toString();
         player.sendMessage(newNbtStr);
@@ -106,12 +105,12 @@ public class EditNBT {
         NBTBase nbtbase = null;
 
         try {
-            nbtbase = MojangsonParser.parse(newNbtStr);
+            nbtbase = MojangsonParser.a(newNbtStr);
         } catch (CommandSyntaxException e) {
             e.printStackTrace();
         }
 
-        nmsItem.setTag((NBTTagCompound) nbtbase);
+        nmsItem.c((NBTTagCompound) nbtbase);
         ItemStack newStack = CraftItemStack.asBukkitCopy(nmsItem);
         //ItemMeta newMeta = newStack.getItemMeta();
 
@@ -119,7 +118,7 @@ public class EditNBT {
         //stack.setItemMeta(newMeta);
 
         net.minecraft.world.item.ItemStack testCBStack = CraftItemStack.asNMSCopy(newStack);
-        String testnbtStr = testCBStack.getTag().toString();
+        String testnbtStr = testCBStack.s().toString();
         player.sendMessage(testnbtStr);
 
     }
