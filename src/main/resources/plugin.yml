@@ -6,3 +6,5 @@ authors: [ yossy_zip ]
 commands:
   mythicnbttest:
     description: aaa
+  nbt:
+    description: show nbt

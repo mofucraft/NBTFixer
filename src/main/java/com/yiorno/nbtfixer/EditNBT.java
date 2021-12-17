@@ -123,4 +123,13 @@ public class EditNBT {
 
     }
 
+    public void showNbt(Player player) {
+
+        //Get NBT
+        ItemStack stack = player.getInventory().getItemInMainHand();
+        net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
+        String nbtStr = CBStack.s().toString();
+        player.sendMessage(nbtStr);
+
+    }
 }

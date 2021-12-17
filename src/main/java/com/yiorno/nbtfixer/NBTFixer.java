@@ -82,6 +82,15 @@ public final class NBTFixer extends JavaPlugin implements Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+        if(cmd.getName().equalsIgnoreCase("nbt")){
+
+            Player player = (Player)sender;
+            EditNBT editNBT = new EditNBT();
+            editNBT.showNbt(player);
+
+
+        }
+
         if(cmd.getName().equalsIgnoreCase("mythicnbttest")){
 
             Player player = (Player)sender;
