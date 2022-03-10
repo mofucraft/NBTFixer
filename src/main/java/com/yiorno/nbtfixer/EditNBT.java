@@ -4,7 +4,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.nbt.MojangsonParser;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,8 +23,8 @@ public class EditNBT {
             //Get NBT
             net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
 
-            if (CBStack.s() != null) {
-                String nbtStr = CBStack.s().toString();
+            if (CBStack.t() != null) {
+                String nbtStr = CBStack.t().toString();
 
                 //MYTHICMOBSじゃないアイテムは処理しない
                 if (!(nbtStr.contains("MYTHIC_TYPE"))) {
@@ -52,6 +52,7 @@ public class EditNBT {
                 sb.delete(startPos, endPos + 1);
 
                 String newNbtStr = sb.toString();
+
 
                 //Convert to NBT
                 //net.minecraft.world.item.ItemStack nmsItem = new net.minecraft.world.item.ItemStack(Item.getById(1));
@@ -83,7 +84,7 @@ public class EditNBT {
         //Get NBT
         ItemStack stack = player.getInventory().getItemInMainHand();
         net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
-        String nbtStr = CBStack.s().toString();
+        String nbtStr = CBStack.t().toString();
         player.sendMessage(nbtStr);
 
         //Remove
@@ -118,7 +119,7 @@ public class EditNBT {
         //stack.setItemMeta(newMeta);
 
         net.minecraft.world.item.ItemStack testCBStack = CraftItemStack.asNMSCopy(newStack);
-        String testnbtStr = testCBStack.s().toString();
+        String testnbtStr = testCBStack.t().toString();
         player.sendMessage(testnbtStr);
 
     }
@@ -128,7 +129,7 @@ public class EditNBT {
         //Get NBT
         ItemStack stack = player.getInventory().getItemInMainHand();
         net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
-        String nbtStr = CBStack.s().toString();
+        String nbtStr = CBStack.t().toString();
         player.sendMessage(nbtStr);
 
     }
