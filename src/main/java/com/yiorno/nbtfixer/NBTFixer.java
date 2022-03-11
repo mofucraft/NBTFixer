@@ -32,7 +32,8 @@ public final class NBTFixer extends JavaPlugin implements Listener {
         //ConvertColor convertColor = new ConvertColor();
         //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-        editNBT.removeMythicType(stack);
+        //editNBT.removeMythicType(stack);
+        editNBT.replaceLegacyCoin(stack);
     }
 
     @EventHandler
@@ -44,7 +45,8 @@ public final class NBTFixer extends JavaPlugin implements Listener {
             //ConvertColor convertColor = new ConvertColor();
             //convertColor.convert(stack);
             EditNBT editNBT = new EditNBT();
-            editNBT.removeMythicType(stack);
+            //editNBT.removeMythicType(stack);
+            editNBT.replaceLegacyCoin(stack);
 
         }
     }
@@ -55,7 +57,8 @@ public final class NBTFixer extends JavaPlugin implements Listener {
         //ConvertColor convertColor = new ConvertColor();
         //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-        editNBT.removeMythicType(stack);
+        //editNBT.removeMythicType(stack);
+        editNBT.replaceLegacyCoin(stack);
     }
 
     @EventHandler
@@ -64,7 +67,8 @@ public final class NBTFixer extends JavaPlugin implements Listener {
         //ConvertColor convertColor = new ConvertColor();
         //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-        editNBT.removeMythicType(stack);
+        //editNBT.removeMythicType(stack);
+        editNBT.replaceLegacyCoin(stack);
     }
 
     @EventHandler
@@ -75,7 +79,8 @@ public final class NBTFixer extends JavaPlugin implements Listener {
             //ConvertColor convertColor = new ConvertColor();
             //convertColor.convert(stack);
             EditNBT editNBT = new EditNBT();
-            editNBT.removeMythicType(stack);
+            //editNBT.removeMythicType(stack);
+            editNBT.replaceLegacyCoin(stack);
 
         }
     }
@@ -96,6 +101,15 @@ public final class NBTFixer extends JavaPlugin implements Listener {
             Player player = (Player)sender;
             EditNBT editNBT = new EditNBT();
             editNBT.removeMythicTypeTest(player);
+
+
+        }
+
+        if(cmd.getName().equalsIgnoreCase("replacecointest")){
+
+            Player player = (Player)sender;
+            EditNBT editNBT = new EditNBT();
+            editNBT.replaceLegacyCoinTest(player);
 
 
         }

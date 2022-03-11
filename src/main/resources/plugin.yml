@@ -8,3 +8,5 @@ commands:
     description: aaa
   nbt:
     description: show nbt
+  replacecointest:
+    description: bbb
