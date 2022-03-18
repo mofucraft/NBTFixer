@@ -32,8 +32,19 @@ public final class NBTFixer extends JavaPlugin implements Listener {
         //ConvertColor convertColor = new ConvertColor();
         //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-        //editNBT.removeMythicType(stack);
-        editNBT.replaceLegacyCoin(stack);
+
+        if(editNBT.isLegacyCoin(stack)) {
+            editNBT.replaceLegacyCoin(stack);
+        }
+
+        if(editNBT.isGoldenCratesKey(stack)) {
+            editNBT.replaceGoldenCratesKey(stack);
+        }
+
+        if(editNBT.isMythicItem(stack)) {
+            editNBT.removeMythicType(stack);
+        }
+
     }
 
     @EventHandler
@@ -45,8 +56,18 @@ public final class NBTFixer extends JavaPlugin implements Listener {
             //ConvertColor convertColor = new ConvertColor();
             //convertColor.convert(stack);
             EditNBT editNBT = new EditNBT();
-            //editNBT.removeMythicType(stack);
-            editNBT.replaceLegacyCoin(stack);
+
+            if(editNBT.isLegacyCoin(stack)) {
+                editNBT.replaceLegacyCoin(stack);
+            }
+
+            if(editNBT.isGoldenCratesKey(stack)) {
+                editNBT.replaceGoldenCratesKey(stack);
+            }
+
+            if(editNBT.isMythicItem(stack)) {
+                editNBT.removeMythicType(stack);
+            }
 
         }
     }
@@ -57,8 +78,19 @@ public final class NBTFixer extends JavaPlugin implements Listener {
         //ConvertColor convertColor = new ConvertColor();
         //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-        //editNBT.removeMythicType(stack);
-        editNBT.replaceLegacyCoin(stack);
+
+        if(editNBT.isLegacyCoin(stack)) {
+            editNBT.replaceLegacyCoin(stack);
+        }
+
+        if(editNBT.isGoldenCratesKey(stack)) {
+            editNBT.replaceGoldenCratesKey(stack);
+        }
+
+        if(editNBT.isMythicItem(stack)) {
+            editNBT.removeMythicType(stack);
+        }
+
     }
 
     @EventHandler
@@ -67,8 +99,19 @@ public final class NBTFixer extends JavaPlugin implements Listener {
         //ConvertColor convertColor = new ConvertColor();
         //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-        //editNBT.removeMythicType(stack);
-        editNBT.replaceLegacyCoin(stack);
+
+        if(editNBT.isLegacyCoin(stack)) {
+            editNBT.replaceLegacyCoin(stack);
+        }
+
+        if(editNBT.isGoldenCratesKey(stack)) {
+            editNBT.replaceGoldenCratesKey(stack);
+        }
+
+        if(editNBT.isMythicItem(stack)) {
+            editNBT.removeMythicType(stack);
+        }
+
     }
 
     @EventHandler
@@ -79,8 +122,19 @@ public final class NBTFixer extends JavaPlugin implements Listener {
             //ConvertColor convertColor = new ConvertColor();
             //convertColor.convert(stack);
             EditNBT editNBT = new EditNBT();
-            //editNBT.removeMythicType(stack);
-            editNBT.replaceLegacyCoin(stack);
+
+            if(editNBT.isLegacyCoin(stack)) {
+                editNBT.replaceLegacyCoin(stack);
+            }
+
+            if(editNBT.isGoldenCratesKey(stack)) {
+                editNBT.replaceGoldenCratesKey(stack);
+            }
+
+            if(editNBT.isMythicItem(stack)) {
+                editNBT.removeMythicType(stack);
+            }
+
 
         }
     }
