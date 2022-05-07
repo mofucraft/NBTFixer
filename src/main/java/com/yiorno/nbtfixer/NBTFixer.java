@@ -28,89 +28,41 @@ public final class NBTFixer extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onSpawn(ItemSpawnEvent e){
+
         ItemStack stack = e.getEntity().getItemStack();
-        //ConvertColor convertColor = new ConvertColor();
-        //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-
-        if(editNBT.isLegacyCoin(stack)) {
-            editNBT.replaceLegacyCoin(stack);
-        }
-
-        if(editNBT.isGoldenCratesKey(stack)) {
-            editNBT.replaceGoldenCratesKey(stack);
-        }
-
-        if(editNBT.isMythicItem(stack)) {
-            editNBT.removeMythicType(stack);
-        }
+        editNBT.selectThenDo(stack);
 
     }
 
     @EventHandler
     public void onHold(PlayerItemHeldEvent e){
+
         ItemStack stack = e.getPlayer().getInventory().getItem(e.getNewSlot());
 
         if(stack != null) {
 
-            //ConvertColor convertColor = new ConvertColor();
-            //convertColor.convert(stack);
             EditNBT editNBT = new EditNBT();
-
-            if(editNBT.isLegacyCoin(stack)) {
-                editNBT.replaceLegacyCoin(stack);
-            }
-
-            if(editNBT.isGoldenCratesKey(stack)) {
-                editNBT.replaceGoldenCratesKey(stack);
-            }
-
-            if(editNBT.isMythicItem(stack)) {
-                editNBT.removeMythicType(stack);
-            }
+            editNBT.selectThenDo(stack);
 
         }
     }
 
     @EventHandler
     public void onDrop(PlayerDropItemEvent e){
+
         ItemStack stack = e.getItemDrop().getItemStack();
-        //ConvertColor convertColor = new ConvertColor();
-        //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-
-        if(editNBT.isLegacyCoin(stack)) {
-            editNBT.replaceLegacyCoin(stack);
-        }
-
-        if(editNBT.isGoldenCratesKey(stack)) {
-            editNBT.replaceGoldenCratesKey(stack);
-        }
-
-        if(editNBT.isMythicItem(stack)) {
-            editNBT.removeMythicType(stack);
-        }
+        editNBT.selectThenDo(stack);
 
     }
 
     @EventHandler
     public void onPickup(EntityPickupItemEvent e){
+
         ItemStack stack = e.getItem().getItemStack();
-        //ConvertColor convertColor = new ConvertColor();
-        //convertColor.convert(stack);
         EditNBT editNBT = new EditNBT();
-
-        if(editNBT.isLegacyCoin(stack)) {
-            editNBT.replaceLegacyCoin(stack);
-        }
-
-        if(editNBT.isGoldenCratesKey(stack)) {
-            editNBT.replaceGoldenCratesKey(stack);
-        }
-
-        if(editNBT.isMythicItem(stack)) {
-            editNBT.removeMythicType(stack);
-        }
+        editNBT.selectThenDo(stack);
 
     }
 
@@ -119,22 +71,8 @@ public final class NBTFixer extends JavaPlugin implements Listener {
         if (e.getCurrentItem() != null && e.getCurrentItem().getItemMeta() != null) {
 
             ItemStack stack = e.getCurrentItem();
-            //ConvertColor convertColor = new ConvertColor();
-            //convertColor.convert(stack);
             EditNBT editNBT = new EditNBT();
-
-            if(editNBT.isLegacyCoin(stack)) {
-                editNBT.replaceLegacyCoin(stack);
-            }
-
-            if(editNBT.isGoldenCratesKey(stack)) {
-                editNBT.replaceGoldenCratesKey(stack);
-            }
-
-            if(editNBT.isMythicItem(stack)) {
-                editNBT.removeMythicType(stack);
-            }
-
+            editNBT.selectThenDo(stack);
 
         }
     }
@@ -147,7 +85,6 @@ public final class NBTFixer extends JavaPlugin implements Listener {
             EditNBT editNBT = new EditNBT();
             editNBT.showNbt(player);
 
-
         }
 
         if(cmd.getName().equalsIgnoreCase("mythicnbttest")){
@@ -156,7 +93,6 @@ public final class NBTFixer extends JavaPlugin implements Listener {
             EditNBT editNBT = new EditNBT();
             editNBT.removeMythicTypeTest(player);
 
-
         }
 
         if(cmd.getName().equalsIgnoreCase("replacecointest")){
@@ -164,7 +100,6 @@ public final class NBTFixer extends JavaPlugin implements Listener {
             Player player = (Player)sender;
             EditNBT editNBT = new EditNBT();
             editNBT.replaceLegacyCoinTest(player);
-
 
         }
 

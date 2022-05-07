@@ -63,20 +63,36 @@ public class EditNBT {
             net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
 
             if (CBStack.t() != null) {
+
                 String nbtStr = CBStack.t().toString();
 
-                //Remove
-                int startPos = nbtStr.indexOf("MYTHIC_TYPE");
-                int endPos = nbtStr.indexOf(",", startPos);
-
                 StringBuilder sb = new StringBuilder();
-
                 sb.append(nbtStr);
 
-                sb.delete(startPos, endPos + 1);
+                int startPos;
+                int endPos;
+
+                //Remove MYTHIC_TYPE
+                if(nbtStr.contains("MYTHIC_TYPE")){
+
+                    startPos = nbtStr.indexOf("MYTHIC_TYPE");
+                    endPos = nbtStr.indexOf(",", startPos);
+
+                    sb.delete(startPos, endPos + 1);
+
+                }
+
+                //Remove MYTHIC_ITEM_VERSION, since mm 5.0.4
+                if(nbtStr.contains("MYTHIC_ITEM_VERSION")){
+
+                    startPos = nbtStr.indexOf("MYTHIC_ITEM_VERSION");
+                    endPos = nbtStr.indexOf(",", startPos);
+
+                    sb.delete(startPos, endPos + 1);
+
+                }
 
                 String newNbtStr = sb.toString();
-
 
                 //Convert to NBT
                 //net.minecraft.world.item.ItemStack nmsItem = new net.minecraft.world.item.ItemStack(Item.getById(1));
@@ -156,6 +172,22 @@ public class EditNBT {
         //removeMythicType(stack);
     }
 
+    public void selectThenDo(ItemStack stack){
+
+        if(isLegacyCoin(stack)) {
+            replaceLegacyCoin(stack);
+        }
+
+        if(isGoldenCratesKey(stack)) {
+            replaceGoldenCratesKey(stack);
+        }
+
+        if(isMythicItem(stack)) {
+            removeMythicType(stack);
+        }
+
+    }
+
     public boolean isMythicItem(ItemStack stack){
 
         //シュルカーは処理しない
@@ -171,7 +203,7 @@ public class EditNBT {
             String nbtStr = CBStack.t().toString();
 
             //MYTHICMOBSじゃないアイテムは処理しない
-            if (!(nbtStr.contains("MYTHIC_TYPE"))) {
+            if (!(nbtStr.contains("MYTHIC_TYPE")) && !(nbtStr.contains("MYTHIC_ITEM_VERSION"))) {
                 ConvertColor cc = new ConvertColor();
                 cc.convert(stack);
                 return false;
