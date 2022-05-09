@@ -210,7 +210,7 @@ public class EditNBT {
             }
 
             //シュルカーは処理しない(多分)
-            if (nbtStr.contains("BlockEntityTag") || nbtStr.length() > 800) {
+            if (nbtStr.contains("BlockEntityTag") || nbtStr.length() > 1600) {
                 ConvertColor cc = new ConvertColor();
                 cc.convert(stack);
                 return false;
