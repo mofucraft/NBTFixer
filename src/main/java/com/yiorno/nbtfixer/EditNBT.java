@@ -236,6 +236,35 @@ public class EditNBT {
         return false;
     }
 
+    public boolean isCoin(ItemStack stack){
+
+        String itemName = stack.getItemMeta().getDisplayName();
+
+        //一応アイテム名の確認
+        if(!(itemName.contains("MOFU"))){
+            return false;
+        }
+
+        //Get NBT
+        net.minecraft.world.item.ItemStack CBStack = CraftItemStack.asNMSCopy(stack);
+
+        if (CBStack.v() != null) {
+            String nbtStr = CBStack.v().toString();
+
+            if (stack.getType() == Material.PLAYER_HEAD) {
+
+                //昔のお金の頭か確認
+                if (nbtStr.contains("coins-worth")) {
+
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+
     public boolean isLegacyCoin(ItemStack stack){
 
         String itemName = stack.getItemMeta().getDisplayName();
